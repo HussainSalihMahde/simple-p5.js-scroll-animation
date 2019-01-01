@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+</head>
+<body>
+    <script>
+
+        function sentense(txt,x,y){
+            this.text = txt;
+            this.x = x;
+            this.y = y;
+            this.r = 50;
+        }
+
+        sentense.prototype.show = function(){
+            fill(255,50,150);
+            textSize(this.r);
+            text(this.text,this.x,this.y);
+        }
+
+        var t,s,p,x=30,y=500;
+
+        function setup() {
+        createCanvas(650, 550);
+            
+            t = new sentense('jav',220,300);
+            s = new sentense('ascr',285,300);
+            p = new sentense('ipt',380,300);
+        }
+
+        function draw() {
+        background(220);
+            
+            t.show();
+            s.show();
+            p.show();
+            
+            noStroke();
+            fill(255,50,150);
+            ellipse(x,y,50,50);
+        }
+
+        function mouseWheel(event) {
+                if(event.delta > 0){
+                    t.y += 3;
+                    p.y -= 3;
+                    x += 2;
+                }else if(event.delta < 0 && p.y < 300){
+                    t.y -= 3;
+                    p.y += 3;
+                    x -= 2;
+                }
+        }
+
+    </script>
+</body>
+</html>
